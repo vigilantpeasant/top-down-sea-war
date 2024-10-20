@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://demss5glq30vq"]
+
+[ext_resource type="Texture2D" uid="uid://0oifpbbxobus" path="res://assets/tick.png" id="1_l8fum"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apf6e"]
+size = Vector2(92, 124)
+
+[node name="Target Indıcator" type="Sprite2D"]
+scale = Vector2(0.6875, 0.71875)
+texture = ExtResource("1_l8fum")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_apf6e")

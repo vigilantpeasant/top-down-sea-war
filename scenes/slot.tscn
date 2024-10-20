@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhfrhnrurtdgw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nv31p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_165yd"]
+
+[node name="Slot" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nv31p")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(32, 32)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_165yd")

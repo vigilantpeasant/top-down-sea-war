@@ -1,0 +1,197 @@
+[gd_scene load_steps=12 format=3 uid="uid://bcbrwawytvpwj"]
+
+[ext_resource type="Script" path="res://scripts/gui.gd" id="1_yvqpk"]
+[ext_resource type="PackedScene" uid="uid://bhfrhnrurtdgw" path="res://scenes/slot.tscn" id="2_yf0iu"]
+[ext_resource type="Texture2D" uid="uid://bsw44ncwlp44r" path="res://assets/coin.png" id="3_kh873"]
+[ext_resource type="Texture2D" uid="uid://bn4wywxofg1re" path="res://assets/crew.png" id="4_u7hxj"]
+[ext_resource type="Texture2D" uid="uid://dw72d34onl0vf" path="res://assets/boat4.png" id="5_gehhh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i484o"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2wle"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_xdli7"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_auvry"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_dm8xl"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_u2cyp"]
+font_size = 14
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_yvqpk")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stats" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_top = -248.0
+offset_right = -8.0
+offset_bottom = -152.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Stats"]
+layout_mode = 0
+offset_right = 136.0
+offset_bottom = 48.0
+
+[node name="MaxSpeed" type="Label" parent="UI/Stats/VBoxContainer"]
+layout_mode = 2
+text = "Max Speed: "
+label_settings = SubResource("LabelSettings_i484o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Acceleration" type="Label" parent="UI/Stats/VBoxContainer"]
+layout_mode = 2
+text = "Acceleration:"
+label_settings = SubResource("LabelSettings_i2wle")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Deceleration" type="Label" parent="UI/Stats/VBoxContainer"]
+layout_mode = 2
+text = "Deceleration:
+"
+label_settings = SubResource("LabelSettings_i2wle")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurningSpeed" type="Label" parent="UI/Stats/VBoxContainer"]
+layout_mode = 2
+text = "Turning Speed: "
+label_settings = SubResource("LabelSettings_i2wle")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Inventory" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 152.0
+offset_right = 216.0
+offset_bottom = 248.0
+grow_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="Left" parent="UI/Inventory" instance=ExtResource("2_yf0iu")]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 88.0
+
+[node name="Label" type="Label" parent="UI/Inventory/Left"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 80.0
+text = "<Left Click>"
+label_settings = SubResource("LabelSettings_xdli7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right" parent="UI/Inventory" instance=ExtResource("2_yf0iu")]
+layout_mode = 2
+offset_left = 120.0
+offset_top = 24.0
+offset_right = 184.0
+offset_bottom = 88.0
+
+[node name="Label2" type="Label" parent="UI/Inventory/Right"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 80.0
+text = "<Right Click>"
+label_settings = SubResource("LabelSettings_auvry")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Info" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -104.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="Coin2D" type="Sprite2D" parent="UI/Info"]
+position = Vector2(16, 80)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_kh873")
+
+[node name="Coin" type="Label" parent="UI/Info/Coin2D"]
+offset_left = 20.0
+offset_top = -10.0
+offset_right = 160.0
+offset_bottom = 20.0
+text = "Coins: 20242024"
+label_settings = SubResource("LabelSettings_dm8xl")
+horizontal_alignment = 1
+
+[node name="Crew2D" type="Sprite2D" parent="UI/Info"]
+position = Vector2(16.0001, 48)
+scale = Vector2(0.8, 0.800001)
+texture = ExtResource("4_u7hxj")
+
+[node name="Coin" type="Label" parent="UI/Info/Crew2D"]
+offset_left = 23.0
+offset_top = -9.0
+offset_right = 151.0
+offset_bottom = 23.0
+text = "Crew: 2/4"
+label_settings = SubResource("LabelSettings_dm8xl")
+horizontal_alignment = 1
+
+[node name="Boat2D" type="Sprite2D" parent="UI/Info"]
+position = Vector2(16, 16)
+scale = Vector2(0.799999, 0.799999)
+texture = ExtResource("5_gehhh")
+
+[node name="Boat" type="Label" parent="UI/Info/Boat2D"]
+offset_left = 20.0
+offset_top = -10.0
+offset_right = 160.0
+offset_bottom = 20.0
+text = "Health: 10/10"
+label_settings = SubResource("LabelSettings_dm8xl")
+horizontal_alignment = 1
+
+[node name="Version" type="Label" parent="."]
+offset_right = 64.0
+offset_bottom = 17.0
+text = "version"
+label_settings = SubResource("LabelSettings_u2cyp")
+
+[connection signal="mouse_entered" from="UI/Inventory/Left" to="." method="_on_slot_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Inventory/Left" to="." method="_on_slot_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Inventory/Right" to="." method="_on_slot_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Inventory/Right" to="." method="_on_slot_mouse_exited"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp4q2tecwvwp8"]
+
+[ext_resource type="PackedScene" uid="uid://ha0o4rl1eq82" path="res://scenes/ship.tscn" id="1_la60k"]
+[ext_resource type="PackedScene" uid="uid://bcbrwawytvpwj" path="res://scenes/gui.tscn" id="2_kbqrh"]
+[ext_resource type="PackedScene" uid="uid://egbcvjjhp3lc" path="res://scenes/enemy.tscn" id="3_g45wh"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1039.0
+offset_top = -754.0
+offset_right = 2019.0
+offset_bottom = 798.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.210829, 0.637031, 0.697917, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -964.0
+offset_top = -314.0
+offset_right = -182.0
+offset_bottom = 332.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.697917, 0.42393, 0.210829, 1)
+
+[node name="Ship" parent="." instance=ExtResource("1_la60k")]
+
+[node name="GUI" parent="." instance=ExtResource("2_kbqrh")]
+visible = false
+
+[node name="Enemy" parent="." instance=ExtResource("3_g45wh")]
+position = Vector2(48, -200)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_g45wh")]
+position = Vector2(208, -120)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_g45wh")]
+position = Vector2(349, 3)

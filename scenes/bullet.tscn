@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://js7tfu8apyj3"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_mtv2u"]
+[ext_resource type="Texture2D" uid="uid://belli7g25c8y4" path="res://assets/cannon_ball.png" id="2_lxion"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy0xj"]
+size = Vector2(10, 10)
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_mtv2u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hy0xj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("2_lxion")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://n874rp07h5w1"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_woswx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ulcvw"]
+font_size = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aca6e"]
+bg_color = Color(0, 0, 0, 0.380392)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhvql"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i134b"]
+
+[sub_resource type="Theme" id="Theme_6in06"]
+Button/styles/focus = SubResource("StyleBoxEmpty_lhvql")
+Button/styles/normal = SubResource("StyleBoxEmpty_i134b")
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_woswx")
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "version"
+label_settings = SubResource("LabelSettings_ulcvw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = -8.0
+offset_right = 264.0
+offset_bottom = 656.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aca6e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_top = 136.0
+offset_right = 136.0
+offset_bottom = 520.0
+alignment = 1
+
+[node name="Play" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_6in06")
+text = "Play"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Play" to="." method="_on_play_pressed"]
