@@ -1,14 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhfrhnrurtdgw"]
+[gd_scene load_steps=4 format=3 uid="uid://bhfrhnrurtdgw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nv31p"]
+[ext_resource type="Script" path="res://scripts/resources/slot.gd" id="1_hsksg"]
+[ext_resource type="Theme" uid="uid://ccwox6spgsfhn" path="res://themes/theme.tres" id="1_qaq50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_165yd"]
 
-[node name="Slot" type="Panel"]
+[node name="Slot" type="Button"]
 custom_minimum_size = Vector2(64, 64)
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_nv31p")
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 1
+theme = ExtResource("1_qaq50")
+button_mask = 0
+script = ExtResource("1_hsksg")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -17,3 +21,8 @@ visible = false
 position = Vector2(32, 32)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_165yd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0

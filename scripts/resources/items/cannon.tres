@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bx6grp6yl0fk8"]
+
+[ext_resource type="Texture2D" uid="uid://rbsvx5741ecp" path="res://assets/cannon.png" id="1_6joba"]
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_lckyy"]
+
+[resource]
+script = ExtResource("1_lckyy")
+name = "Cannon"
+icon = ExtResource("1_6joba")
+rarity = "Common"
+rate_of_fire = 1.0
+damage = 5

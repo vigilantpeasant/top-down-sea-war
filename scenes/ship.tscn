@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ha0o4rl1eq82"]
+[gd_scene load_steps=15 format=3 uid="uid://ha0o4rl1eq82"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_jh4y2"]
 [ext_resource type="Texture2D" uid="uid://buelentlc2dql" path="res://assets/ships/cog.png" id="2_n42ip"]
@@ -14,39 +14,66 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_n42ip")
-}, {
-"duration": 1.0,
 "texture": ExtResource("3_c0kv7")
+}],
+"loop": true,
+"name": &"Carrack",
+"speed": 5.0
 }, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n42ip")
+}],
+"loop": false,
+"name": &"Cog",
+"speed": 0.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_3h15d")
+}],
+"loop": true,
+"name": &"Dhow",
+"speed": 5.0
 }, {
-"duration": 1.0,
-"texture": ExtResource("5_3kjb7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_hcl8q")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_jj8cu")
-}, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("8_dcker")
 }],
-"loop": false,
-"name": &"default",
-"speed": 0.0
+"loop": true,
+"name": &"Drakkar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hcl8q")
+}],
+"loop": true,
+"name": &"Galley",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3kjb7")
+}],
+"loop": true,
+"name": &"Junk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_jj8cu")
+}],
+"loop": true,
+"name": &"Knarr",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28dgm"]
 size = Vector2(62, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgnrn"]
-size = Vector2(183, 389)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_70ptr"]
-size = Vector2(177, 388)
+size = Vector2(392, 389)
 
 [sub_resource type="Curve" id="Curve_wtvo5"]
 _data = [Vector2(0, 0), 0.0, 0.441509, 0, 1, Vector2(1, 0.441509), 0.441509, 0.0, 1, 0]
@@ -61,8 +88,8 @@ script = ExtResource("1_jh4y2")
 [node name="Ship2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_tcak8")
-autoplay = "default"
-frame = 2
+animation = &"Knarr"
+autoplay = "Cog"
 offset = Vector2(4, 0)
 metadata/_edit_lock_ = true
 
@@ -87,23 +114,14 @@ metadata/_edit_lock_ = true
 position = Vector2(-12, 3)
 metadata/_edit_lock_ = true
 
-[node name="LeftOverlap" type="Area2D" parent="."]
+[node name="WeaponOverlay" type="Area2D" parent="."]
 visible = false
 position = Vector2(-21, 3)
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftOverlap"]
-position = Vector2(-84.5, -4.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponOverlay"]
+position = Vector2(21, -3)
 shape = SubResource("RectangleShape2D_jgnrn")
-
-[node name="RightOverlap" type="Area2D" parent="."]
-visible = false
-position = Vector2(48, 3)
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightOverlap"]
-position = Vector2(52.5, -5)
-shape = SubResource("RectangleShape2D_70ptr")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, 36)
@@ -112,14 +130,12 @@ metadata/_edit_lock_ = true
 [node name="Line2D" parent="Marker2D" instance=ExtResource("9_alm17")]
 top_level = true
 z_index = -1
-width = 32.0
+width = 24.0
 width_curve = SubResource("Curve_wtvo5")
 gradient = SubResource("Gradient_dx8me")
 joint_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 
-[connection signal="body_entered" from="LeftOverlap" to="." method="_on_left_overlap_body_entered"]
-[connection signal="body_exited" from="LeftOverlap" to="." method="_on_left_overlap_body_exited"]
-[connection signal="body_entered" from="RightOverlap" to="." method="_on_right_overlap_body_entered"]
-[connection signal="body_exited" from="RightOverlap" to="." method="_on_right_overlap_body_exited"]
+[connection signal="body_entered" from="WeaponOverlay" to="." method="_on_overlay_body_entered"]
+[connection signal="body_exited" from="WeaponOverlay" to="." method="_on_overlay_body_exited"]

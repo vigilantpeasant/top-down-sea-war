@@ -10,14 +10,16 @@ config_version=5
 
 [application]
 
-config/name="open top down"
-run/main_scene="res://scenes/map.tscn"
+config/name="Sea War"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
 [autoload]
 
 Data="*res://scripts/data.gd"
+GUI="*res://scenes/gui.tscn"
+Tooltips="*res://scenes/tooltip.tscn"
 
 [display]
 

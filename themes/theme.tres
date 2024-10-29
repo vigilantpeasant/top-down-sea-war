@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ccwox6spgsfhn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhvql"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1s2lt"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.694118)
+
+[resource]
+Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_lhvql")
+Panel/styles/panel = SubResource("StyleBoxFlat_1s2lt")

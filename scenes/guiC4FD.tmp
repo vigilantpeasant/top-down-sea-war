@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcbrwawytvpwj"]
+[gd_scene load_steps=16 format=3 uid="uid://bcbrwawytvpwj"]
 
 [ext_resource type="Script" path="res://scripts/gui.gd" id="1_yvqpk"]
 [ext_resource type="Script" path="res://scripts/resources/hotbar.gd" id="2_77nah"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bhfrhnrurtdgw" path="res://scenes/slot.tscn" id="2_yf0iu"]
 [ext_resource type="Texture2D" uid="uid://bsw44ncwlp44r" path="res://assets/coin.png" id="3_kh873"]
 [ext_resource type="Texture2D" uid="uid://bn4wywxofg1re" path="res://assets/crew.png" id="4_u7hxj"]
+[ext_resource type="Texture2D" uid="uid://rbsvx5741ecp" path="res://assets/cannon.png" id="5_d8d1x"]
 [ext_resource type="Texture2D" uid="uid://dw72d34onl0vf" path="res://assets/boat4.png" id="5_gehhh"]
 [ext_resource type="LabelSettings" uid="uid://d1yymbhh6gksd" path="res://themes/label.tres" id="6_o2tdl"]
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="6_vg554"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i484o"]
 font_size = 14
@@ -15,7 +17,23 @@ font_size = 14
 [sub_resource type="LabelSettings" id="LabelSettings_i2wle"]
 font_size = 14
 
+[sub_resource type="Resource" id="Resource_drq2a"]
+script = ExtResource("6_vg554")
+name = "Cannon"
+icon = ExtResource("5_d8d1x")
+rarity = "Rare"
+rate_of_fire = 1.0
+damage = 5
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p7sqf"]
+
+[sub_resource type="Resource" id="Resource_uxjc5"]
+script = ExtResource("6_vg554")
+name = "Cannon"
+icon = ExtResource("5_d8d1x")
+rarity = "Legendary"
+rate_of_fire = 1.0
+damage = 5
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_yvqpk")
@@ -97,6 +115,7 @@ offset_top = 24.0
 offset_right = 88.0
 offset_bottom = 88.0
 icon_alignment = 1
+item = SubResource("Resource_drq2a")
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/Hotbar/slot"]
 layout_mode = 0
@@ -122,6 +141,7 @@ offset_top = 24.0
 offset_right = 192.0
 offset_bottom = 88.0
 icon_alignment = 1
+item = SubResource("Resource_uxjc5")
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/Hotbar/slot2"]
 layout_mode = 0
