@@ -12,16 +12,16 @@ func ItemPopup(slot, item : Item):
 		set_value(item)
 		%ItemPopUp.size = Vector2i.ZERO
 	
-	var mouse_pos = get_viewport().get_mouse_position()
-	var correction
-	var padding = 4
-	
-	if mouse_pos.x <= get_viewport_rect().size.x /2:
-		correction = Vector2i(slot.size.x + padding, 0)
-	else:
-		correction = Vector2i(%ItemPopUp.size.x + padding, 0)
-	
-	%ItemPopUp.popup(Rect2i(slot.position + correction, %ItemPopUp.size))
+		var mouse_pos = get_viewport().get_mouse_position()
+		var correction
+		var padding = 4
+		
+		if mouse_pos.x <= get_viewport_rect().size.x:
+			correction = Vector2i(slot.size.x + padding, 0)
+		else:
+			correction = Vector2i(%ItemPopUp.size.x + padding, 0)
+		
+		%ItemPopUp.popup(Rect2i(slot.position + correction, %ItemPopUp.size))
 
 func HideItemPopup():
 	%ItemPopUp.hide()

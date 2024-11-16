@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var ship_2d = $Ship2D
 @onready var lweapon_bar = GUI.get_node("UI/Hotbar/slot/ProgressBar")
 @onready var rweapon_bar = GUI.get_node("UI/Hotbar/slot2/ProgressBar")
-@onready var hotbar = GUI.get_node("UI/Hotbar")
+var hotbar = GUI.get_node("UI/Hotbar")
 var bullet_scene = preload("res://scenes/bullet.tscn")
 var target_indicator = preload("res://scenes/target_indicator.tscn")
 
@@ -18,31 +18,19 @@ var current_speed = 0.0
 
 var left_can_shoot = true
 var right_can_shoot = true
-var lweapon_timer = 0.0
-var rweapon_timer = 0.0
-var lrate_of_fire = 1.0
-var rrate_of_fire = 1.0
+var lweapon_timer : float = 0.0
+var rweapon_timer : float = 0.0
+var lrate_of_fire : float = 1.0
+var rrate_of_fire : float = 1.0
 var nearest_enemy: Node2D = null
 var targeted_enemy: Node2D = null
 var indicator_instances = {}
 
 func _ready():
 	# Set ship
-	match (Data.current_ship):
-		"Cog":
-			ship_2d.animation = "Cog"
-		"Carrack":
-			ship_2d.animation = "Carrack"
-		"Dhow":
-			ship_2d.animation = "Dhow"
-		"Junk":
-			ship_2d.animation = "Junk"
-		"Galley":
-			ship_2d.animation = "Galley"
-		"Knarr":
-			ship_2d.animation = "Knarr"
-		"Drakkar":
-			ship_2d.animation = "Drakkar"
+	var animation = Data.current_ship
+	if animation in Data.ships:
+		ship_2d.animation = animation
 	
 	# Update rate of fire based on weapon
 	update_firing_rates()
@@ -54,9 +42,9 @@ func _physics_process(delta):
 
 func handle_movement(delta):
 	# Handle acceleration and deceleration
-	if Input.is_action_pressed("up"):
+	if Input.is_action_pressed("up") and !GUI.pause_menu:
 		current_speed = min(current_speed + acceleration * delta, max_speed)
-	elif Input.is_action_pressed("down"):
+	elif Input.is_action_pressed("down") and !GUI.pause_menu:
 		current_speed = max(current_speed - acceleration * delta, 0)
 	else:
 		if current_speed > 0:
@@ -70,9 +58,9 @@ func handle_movement(delta):
 		effective_rotation_speed *= 0.5
 	
 	# Handle steering
-	if Input.is_action_pressed("left"):
+	if Input.is_action_pressed("left") and !GUI.pause_menu:
 		rotation -= effective_rotation_speed * delta
-	elif Input.is_action_pressed("right"):
+	elif Input.is_action_pressed("right") and !GUI.pause_menu:
 		rotation += effective_rotation_speed * delta
 	
 	# Calculate direction and move ship
@@ -81,16 +69,19 @@ func handle_movement(delta):
 	move_and_slide()
 
 func handle_firing():
-	# Fire left weapon when left mouse button is pressed, left item is equipped, and left_can_shoot is true
-	if Input.is_action_just_pressed("mouse_left") and targeted_enemy and left_can_shoot and hotbar.left_weapon_slot.item:
+	# Fire left weapon when all conditions are met
+	if can_fire("mouse_left", left_can_shoot, hotbar.left_weapon_slot.item):
 		fire(left_weapon, targeted_enemy)
 	
-	# Fire right weapon when right mouse button is pressed, right item is equipped, and right_can_shoot is true
-	if Input.is_action_just_pressed("mouse_right") and targeted_enemy and right_can_shoot and hotbar.right_weapon_slot.item:
+	# Fire right weapon when all conditions are met
+	if can_fire("mouse_right", right_can_shoot, hotbar.right_weapon_slot.item):
 		fire(right_weapon, targeted_enemy)
 	
 	# Update indicators for nearest enemies
 	update_indicators()
+
+func can_fire(action, can_shoot, hotbar_item):
+	return Input.is_action_just_pressed(action) and targeted_enemy and can_shoot and hotbar_item and Engine.time_scale != 0 and !GUI.pause_menu
 
 func fire(weapon: Node2D, target_enemy: Node2D):
 	# Create a new bullet
@@ -126,7 +117,7 @@ func update_firing_rates():
 	else:
 		left_can_shoot = false
 		lrate_of_fire = 1.0
-
+	
 	if right_item != null:
 		right_can_shoot = true
 		rrate_of_fire = right_item.rate_of_fire
@@ -149,6 +140,10 @@ func update_weapon_bars(delta):
 		if rweapon_timer <= 0:
 			right_can_shoot = true
 			rweapon_bar.value = 0
+
+func reset_weapon_bars():
+	lweapon_bar.value = 0
+	rweapon_bar.value = 0
 
 func add_item(items):
 	hotbar.add_item(items)
@@ -195,11 +190,7 @@ func _input(event):
 					closest_distance = distance
 					closest_enemy = enemy
 		
-		# Set the closest enemy as the targeted enemy
-		if closest_enemy:
-			targeted_enemy = closest_enemy
-		else:
-			targeted_enemy = null
+		targeted_enemy = closest_enemy
 
 func _on_overlay_body_entered(body):
 	if body.is_in_group("Enemy"):

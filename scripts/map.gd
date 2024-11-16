@@ -1,4 +1,6 @@
 extends Node2D
 
-func _enter_tree():
+func _ready():
 	GUI.show()
+	GUI.load_scene()
+	GUI.settings_menu.update_ui()

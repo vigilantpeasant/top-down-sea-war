@@ -1,13 +1,15 @@
 extends Node
-var version = "v1.5"
+var version = "v1.6"
+var is_vsync = true
+var anti_aliasing = 0
 
-var current_ship = "Cog"
-var health = 0
-var max_health = 10
-var crew = 0
-var max_crew = 4
-var coin = 0
-var max_coin = 1000
+var current_ship = "Drakkar"
+var health : int = 0
+var max_health : int = 10
+var crew : int = 0
+var max_crew : int = 4
+var coin : int = 0
+var max_coin : int = 1000
 
 var ships = {
 	"Drakkar": {

@@ -5,13 +5,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1qc0"]
 size = Vector2(24, 28)
 
-[node name="PickUp" type="Sprite2D"]
+[node name="PickUp" type="Sprite2D" groups=["PickUp"]]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_d8u3a")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4.7187e-07)
 shape = SubResource("RectangleShape2D_e1qc0")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

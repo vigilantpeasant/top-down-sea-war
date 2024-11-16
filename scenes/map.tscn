@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dp4q2tecwvwp8"]
+[gd_scene load_steps=14 format=4 uid="uid://dp4q2tecwvwp8"]
 
 [ext_resource type="Texture2D" uid="uid://stmjhu1ad7b7" path="res://assets/water.png" id="1_l2cgo"]
 [ext_resource type="PackedScene" uid="uid://ha0o4rl1eq82" path="res://scenes/ship.tscn" id="1_la60k"]
@@ -32,6 +32,22 @@ rarity = "Common"
 rate_of_fire = 1.0
 damage = 5
 
+[sub_resource type="Resource" id="Resource_fqrlo"]
+script = ExtResource("7_hw14k")
+name = "Cannon"
+icon = ExtResource("6_66y36")
+rarity = "Rare"
+rate_of_fire = 1.0
+damage = 5
+
+[sub_resource type="Resource" id="Resource_xq0ms"]
+script = ExtResource("7_hw14k")
+name = "Cannon"
+icon = ExtResource("6_66y36")
+rarity = "Legendary"
+rate_of_fire = 1.0
+damage = 5
+
 [node name="Map" type="Node2D"]
 script = ExtResource("1_wqkes")
 
@@ -41,6 +57,7 @@ tile_map_data = PackedByteArray("AADX/+n/AQAAAAAAAADX/+r/AQAAAAAAAADX/+v/AQAAAAA
 tile_set = SubResource("TileSet_p3lgt")
 
 [node name="Ship" parent="." instance=ExtResource("1_la60k")]
+z_index = 2
 
 [node name="Enemy" parent="." instance=ExtResource("3_g45wh")]
 position = Vector2(48, -200)
@@ -52,9 +69,17 @@ position = Vector2(208, -120)
 position = Vector2(349, 3)
 
 [node name="PickUp" parent="." instance=ExtResource("5_qd6tk")]
-position = Vector2(-56, -134)
+position = Vector2(-12, -62)
 items = SubResource("Resource_2i0fl")
 
 [node name="PickUp2" parent="." instance=ExtResource("5_qd6tk")]
-position = Vector2(-254, -64)
+position = Vector2(-74, -122)
 items = SubResource("Resource_j1jvx")
+
+[node name="PickUp3" parent="." instance=ExtResource("5_qd6tk")]
+position = Vector2(-141, -168)
+items = SubResource("Resource_fqrlo")
+
+[node name="PickUp4" parent="." instance=ExtResource("5_qd6tk")]
+position = Vector2(-263, -183)
+items = SubResource("Resource_xq0ms")

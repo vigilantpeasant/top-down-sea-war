@@ -1,21 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://bom0o68fsu5tm"]
+[gd_scene load_steps=8 format=3 uid="uid://bom0o68fsu5tm"]
 
 [ext_resource type="Script" path="res://scripts/tooltip.gd" id="1_6tavm"]
 [ext_resource type="Theme" uid="uid://ccwox6spgsfhn" path="res://themes/theme.tres" id="2_6afgj"]
+[ext_resource type="LabelSettings" uid="uid://d1yymbhh6gksd" path="res://themes/label.tres" id="3_qil5l"]
+[ext_resource type="FontFile" uid="uid://cksuolh12owfu" path="res://themes/terminal-grotesque.grotesque-regular.ttf" id="4_nrdct"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ct8qc"]
-font_size = 18
+[sub_resource type="LabelSettings" id="LabelSettings_frdbx"]
+font = ExtResource("4_nrdct")
+font_size = 20
 
-[sub_resource type="LabelSettings" id="LabelSettings_gi8n6"]
-font_size = 12
+[sub_resource type="LabelSettings" id="LabelSettings_tq5qf"]
+font = ExtResource("4_nrdct")
+font_size = 20
+font_color = Color(0.254902, 0.592157, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_df8tc"]
-font_size = 12
-font_color = Color(0.254477, 0.593252, 1, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_o4xqk"]
-font_size = 12
-font_color = Color(1, 0.359701, 0.47385, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_pmcom"]
+font = ExtResource("4_nrdct")
+font_size = 20
+font_color = Color(1, 0.360784, 0.47451, 1)
 
 [node name="Tooltip" type="Control"]
 layout_mode = 3
@@ -28,7 +30,7 @@ metadata/_edit_lock_ = true
 
 [node name="ItemPopUp" type="PopupPanel" parent="."]
 unique_name_in_owner = true
-position = Vector2i(236, 425)
+position = Vector2i(236, 149)
 size = Vector2i(150, 200)
 visible = true
 theme = ExtResource("2_6afgj")
@@ -47,13 +49,13 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Rare"
-label_settings = SubResource("LabelSettings_ct8qc")
+label_settings = SubResource("LabelSettings_frdbx")
 
 [node name="Name" type="Label" parent="ItemPopUp/VBoxContainer/Head"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Name"
-label_settings = SubResource("LabelSettings_ct8qc")
+label_settings = SubResource("LabelSettings_frdbx")
 
 [node name="RateOfFireCont" type="HBoxContainer" parent="ItemPopUp/VBoxContainer"]
 layout_mode = 2
@@ -62,13 +64,13 @@ layout_mode = 2
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "Rate of Fire:"
-label_settings = SubResource("LabelSettings_gi8n6")
+label_settings = ExtResource("3_qil5l")
 
 [node name="RateOfFireValue" type="Label" parent="ItemPopUp/VBoxContainer/RateOfFireCont"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "2"
-label_settings = SubResource("LabelSettings_df8tc")
+label_settings = SubResource("LabelSettings_tq5qf")
 
 [node name="DamageCont" type="HBoxContainer" parent="ItemPopUp/VBoxContainer"]
 layout_mode = 2
@@ -77,10 +79,10 @@ layout_mode = 2
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "Damage:"
-label_settings = SubResource("LabelSettings_gi8n6")
+label_settings = ExtResource("3_qil5l")
 
 [node name="DamageValue" type="Label" parent="ItemPopUp/VBoxContainer/DamageCont"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "2"
-label_settings = SubResource("LabelSettings_o4xqk")
+label_settings = SubResource("LabelSettings_pmcom")

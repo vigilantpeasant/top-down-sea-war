@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcbrwawytvpwj"]
+[gd_scene load_steps=17 format=3 uid="uid://bcbrwawytvpwj"]
 
 [ext_resource type="Script" path="res://scripts/gui.gd" id="1_yvqpk"]
 [ext_resource type="Script" path="res://scripts/resources/hotbar.gd" id="2_77nah"]
@@ -7,84 +7,44 @@
 [ext_resource type="Texture2D" uid="uid://bsw44ncwlp44r" path="res://assets/coin.png" id="3_kh873"]
 [ext_resource type="Texture2D" uid="uid://bn4wywxofg1re" path="res://assets/crew.png" id="4_u7hxj"]
 [ext_resource type="Texture2D" uid="uid://dw72d34onl0vf" path="res://assets/boat4.png" id="5_gehhh"]
+[ext_resource type="Texture2D" uid="uid://d07enopwudwxd" path="res://assets/prompts/left_click.png" id="5_hcmcj"]
+[ext_resource type="Texture2D" uid="uid://fsl3habg1w62" path="res://assets/prompts/right_click.png" id="6_54h1v"]
 [ext_resource type="LabelSettings" uid="uid://d1yymbhh6gksd" path="res://themes/label.tres" id="6_o2tdl"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_i484o"]
-font_size = 14
-
-[sub_resource type="LabelSettings" id="LabelSettings_i2wle"]
-font_size = 14
+[ext_resource type="Texture2D" uid="uid://cuk56b7gvkt8e" path="res://assets/prompts/escape.png" id="6_o3duu"]
+[ext_resource type="FontFile" uid="uid://cksuolh12owfu" path="res://themes/terminal-grotesque.grotesque-regular.ttf" id="9_ncei7"]
+[ext_resource type="PackedScene" uid="uid://cslhlxky70ven" path="res://scenes/settings_menu.tscn" id="12_4lvkp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p7sqf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3i1q0"]
+font = ExtResource("9_ncei7")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_5w7v0"]
+font = ExtResource("9_ncei7")
+font_size = 21
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_yvqpk")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.0078125
+anchor_top = 0.0123457
+anchor_right = 0.992188
+anchor_bottom = 0.987654
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Stats" type="Panel" parent="UI"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -144.0
-offset_top = -248.0
-offset_right = -8.0
-offset_bottom = -152.0
-grow_horizontal = 0
-size_flags_horizontal = 8
-theme = ExtResource("2_gwkrj")
+metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Stats"]
-layout_mode = 0
-offset_right = 136.0
-offset_bottom = 48.0
-
-[node name="MaxSpeed" type="Label" parent="UI/Stats/VBoxContainer"]
-layout_mode = 2
-text = "Max Speed: "
-label_settings = SubResource("LabelSettings_i484o")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Acceleration" type="Label" parent="UI/Stats/VBoxContainer"]
-layout_mode = 2
-text = "Acceleration:"
-label_settings = SubResource("LabelSettings_i2wle")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Deceleration" type="Label" parent="UI/Stats/VBoxContainer"]
-layout_mode = 2
-text = "Deceleration:
-"
-label_settings = SubResource("LabelSettings_i2wle")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TurningSpeed" type="Label" parent="UI/Stats/VBoxContainer"]
-layout_mode = 2
-text = "Turning Speed: "
-label_settings = SubResource("LabelSettings_i2wle")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Hotbar" type="Panel" parent="UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 152.0
-offset_right = 224.0
-offset_bottom = 248.0
+offset_top = -82.0
+offset_right = 176.0
 grow_vertical = 0
 theme = ExtResource("2_gwkrj")
 script = ExtResource("2_77nah")
@@ -92,10 +52,11 @@ metadata/_edit_lock_ = true
 
 [node name="slot" parent="UI/Hotbar" instance=ExtResource("2_yf0iu")]
 layout_mode = 2
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 88.0
-offset_bottom = 88.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 72.0
+button_mask = 1
 icon_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/Hotbar/slot"]
@@ -108,19 +69,25 @@ fill_mode = 3
 show_percentage = false
 
 [node name="Label" type="Label" parent="UI/Hotbar/slot"]
+visible = false
 layout_mode = 0
-offset_left = -8.0
-offset_top = -24.0
-offset_right = 81.0
-offset_bottom = -1.0
-text = "<Left Click>"
+offset_top = 75.0
+offset_right = 64.0
+offset_bottom = 99.0
+text = "<Left>"
+horizontal_alignment = 1
+
+[node name="LeftClick" type="Sprite2D" parent="UI/Hotbar/slot"]
+position = Vector2(32, 64)
+texture = ExtResource("5_hcmcj")
 
 [node name="slot2" parent="UI/Hotbar" instance=ExtResource("2_yf0iu")]
 layout_mode = 2
-offset_left = 128.0
-offset_top = 24.0
-offset_right = 192.0
-offset_bottom = 88.0
+offset_left = 96.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 72.0
+button_mask = 1
 icon_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/Hotbar/slot2"]
@@ -133,72 +100,186 @@ fill_mode = 3
 show_percentage = false
 
 [node name="Label" type="Label" parent="UI/Hotbar/slot2"]
+visible = false
 layout_mode = 0
-offset_left = -16.0
-offset_top = -24.0
-offset_right = 83.0
-offset_bottom = -1.0
-text = "<Right Click>"
+offset_top = 75.0
+offset_right = 64.0
+offset_bottom = 98.0
+text = "<Right>"
+horizontal_alignment = 1
+
+[node name="RightClick" type="Sprite2D" parent="UI/Hotbar/slot2"]
+position = Vector2(32, 64)
+texture = ExtResource("6_54h1v")
+
+[node name="Slot" parent="UI/Hotbar" instance=ExtResource("2_yf0iu")]
+visible = false
+layout_mode = 0
+offset_left = 56.0
+offset_top = -72.0
+offset_right = 120.0
+offset_bottom = -8.0
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="UI/Hotbar/Slot"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = 162.0
+offset_right = 120.0
+offset_bottom = 188.0
+text = "Select New Weapon"
+label_settings = ExtResource("6_o2tdl")
+horizontal_alignment = 1
 
 [node name="Info" type="Panel" parent="UI"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -152.0
-offset_top = -104.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_right = 352.0
+offset_bottom = 48.0
 theme = ExtResource("2_gwkrj")
 metadata/_edit_lock_ = true
 
 [node name="Coin2D" type="Sprite2D" parent="UI/Info"]
-position = Vector2(16, 80)
+position = Vector2(24, 24)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_kh873")
 
 [node name="Coin" type="Label" parent="UI/Info/Coin2D"]
 offset_left = 20.0
-offset_top = -10.0
-offset_right = 160.0
+offset_top = -9.0
+offset_right = 140.0
 offset_bottom = 20.0
-text = "Coins: 20242024"
-label_settings = ExtResource("6_o2tdl")
+text = "0/2250"
+label_settings = SubResource("LabelSettings_3i1q0")
 horizontal_alignment = 1
 
 [node name="Crew2D" type="Sprite2D" parent="UI/Info"]
-position = Vector2(16.0001, 48)
+position = Vector2(160, 24)
 scale = Vector2(0.8, 0.800001)
 texture = ExtResource("4_u7hxj")
 
 [node name="Crew" type="Label" parent="UI/Info/Crew2D"]
-offset_left = 23.0
+offset_left = 20.0
 offset_top = -9.0
-offset_right = 151.0
-offset_bottom = 23.0
-text = "Crew: 2/4"
-label_settings = ExtResource("6_o2tdl")
+offset_right = 90.0
+offset_bottom = 20.0
+text = "0/8"
+label_settings = SubResource("LabelSettings_3i1q0")
 horizontal_alignment = 1
 
 [node name="Boat2D" type="Sprite2D" parent="UI/Info"]
-position = Vector2(16, 16)
+position = Vector2(256, 24)
 scale = Vector2(0.799999, 0.799999)
 texture = ExtResource("5_gehhh")
 
 [node name="Health" type="Label" parent="UI/Info/Boat2D"]
 offset_left = 20.0
 offset_top = -10.0
-offset_right = 160.0
+offset_right = 120.0
 offset_bottom = 20.0
-text = "Health: 10/10"
-label_settings = ExtResource("6_o2tdl")
+text = "13/13"
+label_settings = SubResource("LabelSettings_3i1q0")
 horizontal_alignment = 1
+
+[node name="Pause" type="Panel" parent="UI"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -324.0
+offset_right = -240.0
+offset_bottom = 332.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Pause"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 656.0
+alignment = 1
+
+[node name="Resume" type="Button" parent="UI/Pause/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_gwkrj")
+text = "Continue"
+
+[node name="Settings" type="Button" parent="UI/Pause/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_gwkrj")
+text = "Settings"
+
+[node name="Exitnsave" type="Button" parent="UI/Pause/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_gwkrj")
+text = "Save and Exit"
+
+[node name="Exitwithoutsave" type="Button" parent="UI/Pause/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_gwkrj")
+text = "Exit without save"
+
+[node name="Settings Menu" parent="UI" instance=ExtResource("12_4lvkp")]
+layout_mode = 1
+offset_left = 534.0
+offset_right = 1478.0
+metadata/_edit_lock_ = true
+
+[node name="FPS" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "FPS"
+label_settings = ExtResource("6_o2tdl")
+metadata/_edit_lock_ = true
+
+[node name="Prompts" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -32.0
+offset_right = 56.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Escape" type="Sprite2D" parent="UI/Prompts"]
+position = Vector2(24, 16)
+scale = Vector2(1.46154, 1.73333)
+texture = ExtResource("6_o3duu")
+
+[node name="Back" type="Label" parent="UI/Prompts"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -7.99998
+offset_top = -29.0
+offset_right = 34.0
+offset_bottom = -3.00001
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+label_settings = SubResource("LabelSettings_5w7v0")
 
 [connection signal="mouse_entered" from="UI/Hotbar/slot" to="UI/Hotbar/slot" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Hotbar/slot" to="UI/Hotbar/slot" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/Hotbar/slot" to="." method="_on_left_slot_pressed"]
 [connection signal="mouse_entered" from="UI/Hotbar/slot2" to="UI/Hotbar/slot2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Hotbar/slot2" to="UI/Hotbar/slot2" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/Hotbar/slot2" to="." method="_on_right_slot_pressed"]
+[connection signal="mouse_entered" from="UI/Hotbar/Slot" to="UI/Hotbar/Slot" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Hotbar/Slot" to="UI/Hotbar/Slot" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/Pause/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="UI/Pause/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/Pause/VBoxContainer/Exitnsave" to="." method="_on_exitnsave_pressed"]
+[connection signal="pressed" from="UI/Pause/VBoxContainer/Exitwithoutsave" to="." method="_on_exitwithoutsave_pressed"]

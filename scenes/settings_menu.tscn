@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://cslhlxky70ven"]
+
+[ext_resource type="Theme" uid="uid://ccwox6spgsfhn" path="res://themes/theme.tres" id="1_h6q5q"]
+[ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_qgpv1"]
+[ext_resource type="LabelSettings" uid="uid://d1yymbhh6gksd" path="res://themes/label.tres" id="3_sw4j8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aca6e"]
+bg_color = Color(0, 0, 0, 0.380392)
+
+[node name="Settings Menu" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -472.0
+offset_top = -296.0
+offset_right = 472.0
+offset_bottom = 296.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aca6e")
+script = ExtResource("1_qgpv1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 955.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="Back" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("1_h6q5q")
+text = "Back"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 87.0
+offset_right = 792.0
+offset_bottom = 551.0
+theme_override_constants/h_separation = 200
+columns = 2
+
+[node name="Vsync" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "V-Sync (recommend)"
+label_settings = ExtResource("3_sw4j8")
+
+[node name="Vsync Button" type="CheckButton" parent="GridContainer"]
+layout_mode = 2
+theme = ExtResource("1_h6q5q")
+button_pressed = true
+
+[node name="AntiAliasing" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Anti Aliasing"
+label_settings = ExtResource("3_sw4j8")
+
+[node name="AntiAliasing Option" type="OptionButton" parent="GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Disabled (Fastest)"
+popup/item_1/text = "2x (Average)"
+popup/item_1/id = 1
+popup/item_2/text = "4x (Slow)"
+popup/item_2/id = 2
+popup/item_3/text = "8x (Slowest)"
+popup/item_3/id = 3
+
+[connection signal="pressed" from="HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GridContainer/Vsync Button" to="." method="_on_vsync_button_pressed"]
+[connection signal="item_selected" from="GridContainer/AntiAliasing Option" to="." method="_on_anti_aliasing_option_item_selected"]
